@@ -28,3 +28,23 @@ footer {
     text-align: center;
     font-size: 10px;
 }
+
+
+#puzzel {
+    display: grid;
+    grid-template-rows: repeat(3, 200px);
+    grid-template-columns: repeat(4, 150px);
+    gap: 1px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.puzzelstuk {
+    width: 150px;
+    height: 200px;
+    background-color: #ccc;
+    background-size: cover; /* Adjust this to fit your image size */
+    display: none; /* Hidden by default */
+    background-repeat: no-repeat;
+    background-position: center;
+}
