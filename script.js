@@ -2,6 +2,9 @@ const vraag = document.getElementById("vraag");
 const correctSpan = document.getElementById("correct");
 const foutiefSpan = document.getElementById("foutief");
 const puzzel = document.getElementById("puzzel");
+const rekenzone = document.getElementById("rekenzone");
+const message = document.getElementById("overwinningsboodschap");
+const speelOpnieuwKnop = document.getElementById("speelopnieuw");
 
 const maxNumber = 6;
 const operations = ['+','-'];
@@ -14,40 +17,41 @@ const afbeeldingArray = [
     './images/rainbow-high.jpg',
 ];
 
-const imgSrc = afbeeldingArray[Math.floor(Math.random()* afbeeldingArray.length)];
+//let imgSrc = afbeeldingArray[Math.floor(Math.random()* afbeeldingArray.length)];
 const rows = 3;
 const cols = 4;
 const totaalAantalStukken = rows * cols;
 
 let aantalVragenGesteld = 0;
-const puzzelStukken = [];
+let puzzelStukken = [];
 
-for(let i = 0; i < totaalAantalStukken; i++){
-    const puzzelstuk = document.createElement('div');
-    puzzelstuk.classList.add('puzzelstuk');
-    puzzelstuk.style.backgroundImage = `url(${imgSrc})`;
-
-    const colIndex = i % cols;
-    const rowIndex = Math.floor(i / cols);
-
-    puzzelstuk.style.backgroundPosition = `-${colIndex* 150}px -${rowIndex * 200}px`;
-    puzzel.appendChild(puzzelstuk);
-    puzzelStukken.push(puzzelstuk);
+function createPuzzle(){
+    let imgSrc = afbeeldingArray[Math.floor(Math.random()* afbeeldingArray.length)];
+    for(let i = 0; i < totaalAantalStukken; i++){
+        const puzzelstuk = document.createElement('div');
+        puzzelstuk.classList.add('puzzelstuk');
+        puzzelstuk.style.backgroundImage = `url(${imgSrc})`;
+    
+        const colIndex = i % cols;
+        const rowIndex = Math.floor(i / cols);
+    
+        puzzelstuk.style.backgroundPosition = `-${colIndex* 150}px -${rowIndex * 200}px`;
+        puzzel.appendChild(puzzelstuk);
+        puzzelStukken.push(puzzelstuk);
+    }
+    
+    const img = new Image();
+        img.src = imgSrc;
+    
+        img.onload = () => {
+            const bgWidth = img.width;
+            const bgHeight = img.height;
+    
+            puzzelStukken.forEach((stuk) => {
+                stuk.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+            });
+        };
 }
-
-const img = new Image();
-    img.src = imgSrc;
-
-    img.onload = () => {
-        const bgWidth = img.width;
-        const bgHeight = img.height;
-
-        puzzelStukken.forEach((stuk) => {
-            stuk.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
-        });
-    };
-
-genereerVolgendeVraag();
 
 function genereerGetallen(){
     eersteGetal = Math.floor(Math.random()*(maxNumber+1));
@@ -64,10 +68,21 @@ function genereerGetallen(){
     }
 }
 
-function genereerVolgendeVraag(){
+function genereerVraag(){
     genereerGetallen();
     vraag.innerText = `${eersteGetal} ${operator} ${tweedeGetal} =`;
     userInput.value = "";
+}
+
+function validInput(input){
+    const regex = new RegExp(`[^0-${maxNumber}]`, 'g');
+    input.value = input.value.replace(regex, '');
+    if ((input.value.startsWith("0") && input.value.length > 1) || input.value.length > 1 ){
+        input.value = input.value.slice(1);
+    }
+    setTimeout(function(){
+        checkResultaat();
+    }, 1000);  
 }
 
 function checkResultaat(){
@@ -87,11 +102,14 @@ function checkResultaat(){
 
         if(aantalVragenGesteld >= totaalAantalStukken){
             setTimeout(function(){
-                alert('Goed gedaan! De puzzel is compleet!');
+                rekenzone.classList.add('d-none');
+                message.innerText += "Goed gedaan! Je hebt de puzzel voltooid."
+                speelOpnieuwKnop.style.display = 'inline-block';
+                speelOpnieuwKnop.style.visibility = 'visible';
             }, 1000);
         }else{
         setTimeout(function(){
-            genereerVolgendeVraag();
+            genereerVraag();
             correctSpan.classList.add('d-none');
             }, 1000);
         }
@@ -101,26 +119,33 @@ function checkResultaat(){
         userInput.value = "";
     }
 }
-function validInput(input){
-    const regex = new RegExp(`[^0-${maxNumber}]`, 'g');
-    input.value = input.value.replace(regex, '');
-    if ((input.value.startsWith("0") && input.value.length > 1) || input.value.length > 1 ){
-        input.value = input.value.slice(1);
-    }
-    setTimeout(function(){
-        checkResultaat();
-    }, 1000);  
-}
-
-
 
 function toonPuzzelstuk(){
     if(aantalVragenGesteld < totaalAantalStukken){
         puzzelStukken[aantalVragenGesteld].style.display = 'block';
         aantalVragenGesteld++;
     }
-    else{
-        alert('Goed gedaan! De puzzel is compleet!');
-    }
 }
 
+function reset(){
+    aantalVragenGesteld = 0;
+    puzzelStukken = [];
+    rekenzone.classList.remove('d-none');
+    speelOpnieuwKnop.style.display = 'none';
+    speelOpnieuwKnop.style.visibility = 'hidden';
+    message.innerText= "";
+    correctSpan.classList.add('d-none');
+    puzzel.innerHTML="";
+    genereerVraag();
+    createPuzzle();
+}
+
+genereerVraag();
+createPuzzle();
+
+/*
+todo:
+-small screens image adjustment
+-display message instead of alert, hide inputfield and label
+- random puzzlepieces
+*/

@@ -43,8 +43,13 @@ footer {
     width: 150px;
     height: 200px;
     background-color: #ccc;
-    background-size: cover; /* Adjust this to fit your image size */
-    display: none; /* Hidden by default */
+    background-size: cover; 
+    display: none; 
     background-repeat: no-repeat;
     background-position: center;
+}
+
+#speelopnieuw {
+    display: none;
+    visibility: hidden;
 }
