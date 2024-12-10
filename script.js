@@ -7,6 +7,48 @@ const maxNumber = 6;
 const operations = ['+','-'];
 let eersteGetal, tweedeGetal, operator;
 
+const afbeeldingArray = [
+    './images/Poes.jpg',
+    './images/camille.jpg',
+    './images/pomelien.jpg',
+    './images/rainbow-high.jpg',
+];
+
+const imgSrc = afbeeldingArray[Math.floor(Math.random()* afbeeldingArray.length)];
+const rows = 3;
+const cols = 4;
+const totaalAantalStukken = rows * cols;
+
+let aantalVragenGesteld = 0;
+const puzzelStukken = [];
+
+for(let i = 0; i < totaalAantalStukken; i++){
+    const puzzelstuk = document.createElement('div');
+    puzzelstuk.classList.add('puzzelstuk');
+    puzzelstuk.style.backgroundImage = `url(${imgSrc})`;
+
+    const colIndex = i % cols;
+    const rowIndex = Math.floor(i / cols);
+
+    puzzelstuk.style.backgroundPosition = `-${colIndex* 150}px -${rowIndex * 200}px`;
+    puzzel.appendChild(puzzelstuk);
+    puzzelStukken.push(puzzelstuk);
+}
+
+const img = new Image();
+    img.src = imgSrc;
+
+    img.onload = () => {
+        const bgWidth = img.width;
+        const bgHeight = img.height;
+
+        puzzelStukken.forEach((stuk) => {
+            stuk.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+        });
+    };
+
+genereerVolgendeVraag();
+
 function genereerGetallen(){
     eersteGetal = Math.floor(Math.random()*(maxNumber+1));
     do {
@@ -70,38 +112,7 @@ function validInput(input){
     }, 1000);  
 }
 
-const imgSrc = './images/Poes.jpg';
-const rows = 3;
-const cols = 4;
-const totaalAantalStukken = rows * cols;
 
-let aantalVragenGesteld = 0;
-const puzzelStukken = [];
-
-for(let i = 0; i < totaalAantalStukken; i++){
-    const puzzelstuk = document.createElement('div');
-    puzzelstuk.classList.add('puzzelstuk');
-    puzzelstuk.style.backgroundImage = `url(${imgSrc})`;
-
-    const colIndex = i % cols;
-    const rowIndex = Math.floor(i / cols);
-
-    puzzelstuk.style.backgroundPosition = `-${colIndex* 150}px -${rowIndex * 200}px`;
-    puzzel.appendChild(puzzelstuk);
-    puzzelStukken.push(puzzelstuk);
-}
-
-const img = new Image();
-    img.src = imgSrc;
-
-    img.onload = () => {
-        const bgWidth = img.width;
-        const bgHeight = img.height;
-
-        puzzelStukken.forEach((stuk) => {
-            stuk.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
-        });
-    };
 
 function toonPuzzelstuk(){
     if(aantalVragenGesteld < totaalAantalStukken){
@@ -112,6 +123,4 @@ function toonPuzzelstuk(){
         alert('Goed gedaan! De puzzel is compleet!');
     }
 }
-
-genereerVolgendeVraag();
 
