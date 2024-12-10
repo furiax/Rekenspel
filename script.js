@@ -17,7 +17,6 @@ const afbeeldingArray = [
     './images/rainbow-high.jpg',
 ];
 
-//let imgSrc = afbeeldingArray[Math.floor(Math.random()* afbeeldingArray.length)];
 const rows = 3;
 const cols = 4;
 const totaalAantalStukken = rows * cols;
@@ -143,9 +142,4 @@ function reset(){
 genereerVraag();
 createPuzzle();
 
-/*
-todo:
--small screens image adjustment
--display message instead of alert, hide inputfield and label
-- random puzzlepieces
-*/
+
