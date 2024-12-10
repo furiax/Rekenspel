@@ -37,7 +37,8 @@ footer {
     gap: 1px;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    padding: 10px;
 }
 .puzzelstuk {
     width: 150px;
@@ -52,4 +53,21 @@ footer {
 #speelopnieuw {
     display: none;
     visibility: hidden;
+}
+
+#rekenzone {
+    padding: 10px;
+    font-size: 24px;
+}
+
+@media (max-width: 600px) {
+    #puzzel{
+        grid-template-rows: repeat(3,120px);
+        grid-template-columns: repeat(4,90px);
+        gap: 1px;
+    }
+    .puzzelstuk{
+        width:90px;
+        height: 120px;
+    }
 }

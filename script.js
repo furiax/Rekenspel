@@ -9,6 +9,7 @@ const speelOpnieuwKnop = document.getElementById("speelopnieuw");
 const maxNumber = 6;
 const operations = ['+','-'];
 let eersteGetal, tweedeGetal, operator;
+let windowWidth = window.innerWidth
 
 const afbeeldingArray = [
     './images/Poes.jpg',
@@ -25,6 +26,9 @@ let aantalVragenGesteld = 0;
 let puzzelStukken = [];
 
 function createPuzzle(){
+    puzzel.innerHTML='';
+    puzzelStukken = [];
+
     let imgSrc = afbeeldingArray[Math.floor(Math.random()* afbeeldingArray.length)];
     for(let i = 0; i < totaalAantalStukken; i++){
         const puzzelstuk = document.createElement('div');
@@ -33,20 +37,36 @@ function createPuzzle(){
     
         const colIndex = i % cols;
         const rowIndex = Math.floor(i / cols);
-    
-        puzzelstuk.style.backgroundPosition = `-${colIndex* 150}px -${rowIndex * 200}px`;
+
+        let colWidth = 150;
+        let rowHeight = 200;
+        
+        if(windowWidth <= 600 ){
+            colWidth = 90;
+            rowHeight = 120;
+        }
+
+        puzzelstuk.style.backgroundPosition = `-${colIndex* colWidth}px -${rowIndex * rowHeight}px`;
+      
         puzzel.appendChild(puzzelstuk);
         puzzelStukken.push(puzzelstuk);
     }
     
     const img = new Image();
-        img.src = imgSrc;
+    img.src = imgSrc;
+
+    img.onload = () => {
+        let imgWidth = img.width;
+        let imgHeight = img.height;
+
+        if(windowWidth <=600){
+            imgWidth = 400;
+            imgHeight = 400;
+        }
+        const bgWidth = imgWidth;
+        const bgHeight = imgHeight;
     
-        img.onload = () => {
-            const bgWidth = img.width;
-            const bgHeight = img.height;
-    
-            puzzelStukken.forEach((stuk) => {
+        puzzelStukken.forEach((stuk) => {
                 stuk.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
             });
         };
@@ -128,13 +148,11 @@ function toonPuzzelstuk(){
 
 function reset(){
     aantalVragenGesteld = 0;
-    puzzelStukken = [];
     rekenzone.classList.remove('d-none');
     speelOpnieuwKnop.style.display = 'none';
     speelOpnieuwKnop.style.visibility = 'hidden';
     message.innerText= "";
     correctSpan.classList.add('d-none');
-    puzzel.innerHTML="";
     genereerVraag();
     createPuzzle();
 }
@@ -142,4 +160,8 @@ function reset(){
 genereerVraag();
 createPuzzle();
 
-
+/*
+todo:
+-small screens image adjustment
+- random puzzlepieces
+*/
