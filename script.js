@@ -16,6 +16,16 @@ const afbeeldingArray = [
     './images/camille.jpg',
     './images/pomelien.jpg',
     './images/rainbow-high.jpg',
+    './images/vaiana.jpg',
+    './images/ariel.jpg',
+    './images/k3.jpg',
+    './images/k3-zeemeermin.jpg',
+    './images/wednesday.jpg',
+    './images/monsterhigh-frankie.jpg',
+    './images/monsterhigh-werewolf.jpg',
+    './images/monsterhigh-vampiregirl.jpg',
+    './images/monsterhigh.jpg',
+    './images/pikachu.jpg',
 ];
 
 const rows = 3;
