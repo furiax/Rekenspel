@@ -176,9 +176,3 @@ function reset(){
 
 genereerVraag();
 createPuzzle();
-
-/*
-todo:
--small screens image adjustment
-- random puzzlepieces
-*/
