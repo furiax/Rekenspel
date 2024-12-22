@@ -76,8 +76,12 @@ footer {
         padding: 2px;
         
     }
-    #userInput, #vraag{
+    #userInput{
         font-size: 25px !important;
+    }
+    #vraag{
+        font-size: 25px !important;
+        color: yellow;
     }
     h1 {
         font-size: small !important;
