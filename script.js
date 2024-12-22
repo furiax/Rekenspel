@@ -5,6 +5,7 @@ const puzzel = document.getElementById("puzzel");
 const rekenzone = document.getElementById("rekenzone");
 const message = document.getElementById("overwinningsboodschap");
 const speelOpnieuwKnop = document.getElementById("speelopnieuw");
+document.getElementById("huidigJaartal").textContent = new Date().getFullYear();
 
 const maxNumber = 6;
 const operations = ['+','-'];
