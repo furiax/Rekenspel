@@ -10,6 +10,7 @@ const maxNumber = 6;
 const operations = ['+','-'];
 let eersteGetal, tweedeGetal, operator;
 let windowWidth = window.innerWidth
+let isBeantwoord = false;
 
 const afbeeldingArray = [
     './images/Poes.jpg',
@@ -98,6 +99,7 @@ function genereerGetallen(){
 }
 
 function genereerVraag(){
+    isBeantwoord = false;
     genereerGetallen();
     vraag.innerText = `${eersteGetal} ${operator} ${tweedeGetal} =`;
     userInput.value = "";
@@ -115,6 +117,9 @@ function validInput(input){
 }
 
 function checkResultaat(){
+    if(isBeantwoord){
+        return;
+    }
     let userInput = document.getElementById("userInput");
     let resultaat;
     switch(operator){
@@ -126,6 +131,7 @@ function checkResultaat(){
 
     if (userInput.value == resultaat)
     {
+        isBeantwoord = true;
         correctSpan.classList.remove('d-none');
         toonPuzzelstuk();
 
@@ -140,6 +146,7 @@ function checkResultaat(){
         setTimeout(function(){
             genereerVraag();
             correctSpan.classList.add('d-none');
+            isBeantwoord = false;
             }, 1000);
         }
     }
