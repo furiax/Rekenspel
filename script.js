@@ -13,7 +13,7 @@ let eersteGetal, tweedeGetal, operator;
 let windowWidth = window.innerWidth
 let isBeantwoord = false;
 
-const afbeeldingArray = [
+/*const afbeeldingArray = [
     './images/Poes.jpg',
     './images/camille.jpg',
     './images/pomelien.jpg',
@@ -28,7 +28,22 @@ const afbeeldingArray = [
     './images/monsterhigh-vampiregirl.jpg',
     './images/monsterhigh.jpg',
     './images/pikachu.jpg',
-];
+];*/
+
+const afbeeldingArray = [
+    './images/kerst1.jpg',
+    './images/kerst2.jpg',
+    './images/kerst3.jpg',
+    './images/kerst4.jpg',
+    './images/kerst5.jpg',
+    './images/kerst6.jpg',
+    './images/kerst7.jpg',
+    './images/kerst8.jpg',
+    './images/kerst9.jpg',
+    './images/kerst10.jpg',
+    './images/kerst11.jpg',
+    './images/kerst12.png',
+]
 
 const rows = 3;
 const cols = 4;
@@ -139,7 +154,7 @@ function checkResultaat(){
         if(aantalVragenGesteld >= totaalAantalStukken){
             setTimeout(function(){
                 rekenzone.classList.add('d-none');
-                message.innerText += "Goed gedaan! Je hebt de puzzel voltooid."
+                message.innerText += "Goed gedaan!"
                 speelOpnieuwKnop.style.display = 'inline-block';
                 speelOpnieuwKnop.style.visibility = 'visible';
             }, 1000);
@@ -177,3 +192,32 @@ function reset(){
 
 genereerVraag();
 createPuzzle();
+
+//snowflake code:
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+
+    // Randomize snowflake size
+    const size = Math.random() * 10 + 5; // Between 5px and 15px
+    snowflake.style.width = `${size}px`;
+    snowflake.style.height = `${size}px`;
+
+    // Randomize starting position
+    snowflake.style.left = `${Math.random() * 100}vw`;
+
+    // Randomize animation duration
+    const fallDuration = Math.random() * 3 + 2; // Between 2s and 5s
+    snowflake.style.animationDuration = `${fallDuration}s`;
+
+    // Append to the container
+    document.getElementById('snow-container').appendChild(snowflake);
+
+    // Remove the snowflake after it has fallen
+    setTimeout(() => {
+        snowflake.remove();
+    }, fallDuration * 1000);
+}
+
+// Continuously generate snowflakes
+setInterval(createSnowflake, 200);
