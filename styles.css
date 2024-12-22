@@ -74,7 +74,7 @@ footer {
     }
     #rekenzone {
         padding: 2px;
-        font-size: medium;
+        font-size: 20px !important;
     }
     h1 {
         font-size: small !important;
