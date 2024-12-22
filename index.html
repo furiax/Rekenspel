@@ -9,16 +9,16 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
     </head>
     <body  class="text-center">
-        <h1 class="m-3" >Reken oefeningen</h1>
+        <h1 class="m-1" >Reken oefeningen</h1>
         <div id="rekenzone">
             <label id="vraag" for="userInput" class="p-2"></label>
-            <input id="userInput" type="text" oninput="validInput(this)" size="1" class="mb-2"> 
+            <input id="userInput" type="text" oninput="validInput(this)" size="1" > 
             <span id="correct" class="text-success d-none"><i class="bi bi-check-circle"></i></span>
             <span id="foutief" class="text-danger d-none"><i class="bi bi-x-circle"></i></span>
         </div>
         <div>
             <span id="overwinningsboodschap"></span><br>
-            <button id="speelopnieuw" class="btn btn-success" onclick="reset()">Speel opnieuw</button>
+            <button id="speelopnieuw" class="btn btn-success btn-small" onclick="reset()">Speel opnieuw</button>
         </div>
         <div id="puzzel">
         </div>
