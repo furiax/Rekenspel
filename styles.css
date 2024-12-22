@@ -74,7 +74,10 @@ footer {
     }
     #rekenzone {
         padding: 2px;
-        font-size: 20px !important;
+        
+    }
+    #userInput{
+        font-size: 25px !important;
     }
     h1 {
         font-size: small !important;
