@@ -7,7 +7,7 @@ const message = document.getElementById("overwinningsboodschap");
 const speelOpnieuwKnop = document.getElementById("speelopnieuw");
 document.getElementById("huidigJaartal").textContent = new Date().getFullYear();
 
-const maxNumber = 6;
+const maxNumber = 8;
 const operations = ['+','-'];
 let eersteGetal, tweedeGetal, operator;
 let windowWidth = window.innerWidth
