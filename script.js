@@ -30,7 +30,7 @@ let isBeantwoord = false;
     './images/pikachu.jpg',
 ];*/
 
-const afbeeldingArray = [
+/*const afbeeldingArray = [
     './images/kerst1.jpg',
     './images/kerst2.jpg',
     './images/kerst3.jpg',
@@ -43,6 +43,17 @@ const afbeeldingArray = [
     './images/kerst10.jpg',
     './images/kerst11.jpg',
     './images/kerst12.png',
+]*/
+
+const afbeeldingArray = [
+    './images/pic1.jpg',
+    './images/pic2.jpg',
+    './images/pic3.jpg',
+    './images/pic4.jpg',
+    './images/pic5.jpg',
+    './images/pic6.jpg',
+    './images/pic7.jpg',
+    './images/pic8.jpg',
 ]
 
 const rows = 3;
@@ -173,6 +184,7 @@ function checkResultaat(){
 }
 
 function toonPuzzelstuk(){
+
     if(aantalVragenGesteld < totaalAantalStukken){
         puzzelStukken[aantalVragenGesteld].style.display = 'block';
         aantalVragenGesteld++;
@@ -190,8 +202,9 @@ function reset(){
     createPuzzle();
 }
 
-genereerVraag();
-createPuzzle();
+    genereerVraag();
+    createPuzzle();
+
 
 //snowflake code:
 function createSnowflake() {
